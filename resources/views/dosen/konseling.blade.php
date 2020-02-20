@@ -32,15 +32,15 @@
                                                 <th>Aksi</th>
 												
 											</tr>
-											
+											@foreach($chat as $c)
 											<tr>
-											<td>Ikhwan</td>
-											<td>14523322</td>
-											<td>Magang</td>
-											<td>Bu saya ditolak terus magang gmna ya ?</td>
+											<td><a href="{{route('showChat',$c)}}">{{$c->mahasiswa->Nama}}</a></td>
+											<td><a href="#">{{$c->mahasiswa->Nim}}</a></td>
+											<td>{{$c->subjek}}</td>
+											<td>{{$c->pesan}}</td>
                                             <td>
 											<a href="#" class="btn btn-primary ">Balas</a>
-												
+												@endforeach
 											</td>								
 											</tr>
 											

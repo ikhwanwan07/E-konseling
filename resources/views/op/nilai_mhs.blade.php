@@ -21,36 +21,25 @@
 									
 								</div>
 								<div class="panel-body">
-									<table class="table">
+									<table class="table table-stripped">
 										<thead>
 											<tr>
 												<th>Nama</th>
-												<th>Nama Matkul</th>
-												<th>Th Ajaran</th>
-												<th>Semester</th>
-												<th>SKS</th>
-												<th>Nilai</th>
+												<th>Nim</th>
 												<th>Aksi</th>
-												
 											</tr>
-											
+											</thead>
+										<tbody>
+										@foreach($mhs as $m)
 											<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-                                            <td></td>
-                                            <td></td>
-											<td></td>
-										
+											<td>{{$m->Nama}}</td>
+											<td>{{$m->Nim}}</td>	
 											<td>
-											<a href="#" class="btn btn-warning fa fa-pencil"></a>
-											<a href="#" class="btn btn-danger fa fa-trash" ></a>	
+											<a href="/nilai/{{$m->id}}" class="btn btn-info fa fa-eye"></a>
+												
 											</td>								
 											</tr>
-											
-										</thead>
-										<tbody>
-											
+											@endforeach
 										</tbody>
 									</table>
 								</div>
@@ -72,35 +61,21 @@
           {{csrf_field()}}
               <div class="form-group" >
                 <label >Nama</label>
-                <input name="Nama"type="text" class="form-control" id="nama"  placeholder="Masukan nama">
+				 <select name="" id="" class="form-control">
+				 @foreach($mhs as $m)
+				<option value="">{{$m->Nama}}</option>
+				@endforeach
+				</select>
               </div>
               <div class="form-group" >
                 <label >Nama Mata Kuliah</label>
-                <input name="matkul"type="text" class="form-control" id="matkul"  placeholder="Mata Kuliah">
-              </div>
-              <div class="form-group">
-                <label >Tahun ajaran</label>
-				<select name="tipe" class="form-control"  >
-                  <option value="">2016/2017</option>
-                  <option value="">2017/2018</option>
-                  <option value="">2018/2019</option>
-                  <option value="">2019/2020</option>
-				  <option value="">2020/2021</option>
-				  <option value="">2021/2022</option>
-                  
-              </select>
-              </div>
-              <div class="form-group">
-                <label >Semester</label>
-                <select class="form-control">
-				<option value="1">Ganjil</option>
-				<option value="2">Genap</option>
+				<select name="" id="" class="form-control">
+				@foreach($matkul as $matkuls)
+				<option value="">{{$matkuls->Mata_kuliah}}</option>
+				@endforeach
 				</select>
+                
               </div>
-			  <div class="form-group">
-			  <label for="">SKS</label>
-			  <input type="text" class="form-control" placeholder="SKS">
-			   </div>
 			   <div class="form-group">
                 <label >Tahun ajaran</label>
 				<select name="tipe" class="form-control"  >

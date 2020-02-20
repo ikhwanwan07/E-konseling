@@ -18,57 +18,33 @@
 								<div class="tab-content">
 									<div class="tab-pane fade in active" id="tab-bottom-left1">
 									<div class="table-responsive">
-											<table class="table table-bordered">
+											<table class="table table-stripped">
 												<thead>
 													<tr>
+														<th>Kode</th>
 														<th>Mata Kuliah</th>
 														<th>SKS</th>
-														<th>Hari</th>
-														<th>Jam</th>
 														<th>Nilai</th>
 														
 													</tr>
 												</thead>
 												<tbody>
+												@foreach($nilai as $n)
                                                 <tr>
-                                                    <td>Kalkulus</td>
-                                                    <td>3</td>
-                                                    <td>Senin</td>
-													<td>08.00</td>
-													<td>A</td>
+                                                    <td>{{$n->kode}}</td>
+                                                    <td>{{$n->Mata_kuliah}}</td>
+                                                    <td>{{$n->SKS}}</td>
+													<td>{{$n->pivot->nilai}}</td>
+													
 													
                                                 </tr>
-                                                <tr>
-                                                    <td>Sistem Informasi</td>
-                                                    <td>2</td>
-                                                    <td>Selasa</td>
-													<td>09.00</td>
-													<td>B</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Matematika Diskrit</td>
-                                                    <td>4</td>
-                                                    <td>Selasa</td>
-													<td>09.00</td>
-													<td>C</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Basis Data</td>
-                                                    <td>3</td>
-                                                    <td>Selasa</td>
-													<td>09.00</td>
-													<td>B</td>
-                                                </tr>
+                                               @endforeach
+                                                
 													
 												</tbody>
 											</table>
 										</div>
-										<form class="navbar-form navbar-left">
-										<div class="input-group">
-											<input type="text" value="" class="form-control" placeholder="Cari berdasarkan semester">
-											<span class="input-group-btn"><button type="button" class="btn btn-primary">Cari</button></span>
-										</div>
-										</form>
+										
 																			
 									</div>
 									

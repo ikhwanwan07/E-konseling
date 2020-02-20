@@ -36,13 +36,18 @@ Route::post('/dosen/{id}/update',"dosenController@update");
 Route::get('/dosen/{id}/hapus',"dosenController@delete");
 Route::get('/tabelpost ',"adminController@show")->name('tabelpost');
 Route::get('/post',"adminController@tambah");
+Route::get('/postprestasi',"adminController@tambahprestasi");
 Route::post('/postBerita',"adminController@postBerita")->name('post.berita');
 Route::get('/Berita/{id}/edit',"adminController@edit");
 Route::post('/Berita/{id}/update',"adminController@update");
 Route::get('/Berita/{id}/hapus',"adminController@delete");
-Route::get('/prestasi',"adminController@prestasi");
+Route::get('/ipk',"adminController@ipk");
+Route::get('/ipk/{id}',"adminController@showipk");
+Route::post('/ipkcreate',"adminController@ipkcreate");
+Route::get('/ipk/{id}/hapus',"adminController@deleteipk");
 Route::get('/jadwal',"adminController@jadwal");
 Route::get('/nilai_mhs',"adminController@nilai_mhs");
+Route::get('/nilai/{id}',"adminController@showNilai");
 
 });
 
@@ -50,11 +55,20 @@ Route::group(['middleware'=>['auth','CheckRole:dosen,admin,mahasiswa']],function
     Route::get('/dashboard',"adminController@index");
     Route::get('/tipe',"adminController@tipe");
     Route::get('/konseling',"dosenController@konseling");
+    Route::get('/konseling/{id}',"dosenController@showchat")->name('showChat');
+    Route::get('/konsultasi/{id}',"adminController@showchat")->name('Chatmhs');
     Route::get('/konsultasi',"adminController@konsultasi");
+    Route::get('/chat',"dosenController@chat");
+    Route::post('/balas',"dosenController@balas");
+    Route::post('/balasmhs',"adminController@balas");
+   
     Route::get('/konsentrasi',"adminController@konsentrasi");
     Route::get('/tabel',"adminController@tabel");
+    Route::get('/profile/{id}',"adminController@profilemhs")->name('showProfile');
     Route::get('/berita',"mahasiswaController@berita");
     Route::get('/profile',"mahasiswaController@profile");
+    Route::post('/createkonsentrasi','adminController@createkonsentrasi');
+    Route::post('/chat',"mahasiswaController@chat");
     Route::get('/nilai',"mahasiswaController@nilai");
     Route::get('/Berita/{id}',"mahasiswaController@lihat")->name('lihat');
     Route::get('/setting',"adminController@setting");
@@ -66,5 +80,8 @@ Route::group(['middleware'=>['auth','CheckRole:dosen,admin,mahasiswa']],function
 
 
 //Auth::routes();
-//
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Auth::routes();
+

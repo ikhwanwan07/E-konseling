@@ -19,10 +19,8 @@ class CreateMahasiswaTable extends Migration
             $table->String('Nim');
             $table->String('jurusan');
             $table->String('alamat');
-            $table->String('IPK');
-            $table->String('DPA');
-
-
+            $table->String('tipe_id');
+            $table->String('dosen_id');
             $table->timestamps();
         });
     }

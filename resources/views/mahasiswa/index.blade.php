@@ -26,7 +26,7 @@
                   <i class="fa fa-user-plus right" data-toggle="modal" data-target="#exampleModal"></i>
 								</div>
 								<div class="panel-body">
-									<table class="table table-hover">
+									<table class="table table-hover" id="dataTable">
 										<thead>
                       <tr>
                           <th>Nama</th>
@@ -46,9 +46,9 @@
                           <td>{{$mahasiswa->email}}</td>
                           <td>{{$mahasiswa->jurusan}}</td>
                           <td>{{$mahasiswa->alamat}}</td>
-                          <td>{{$mahasiswa->IPK}}</td>
-                          <td>{{$mahasiswa->tipe}}</td>
-                          <td>{{$mahasiswa->DPA}}</td>
+                          
+                          <td>{{$mahasiswa->tipe->nama}}</td>
+                          <td>{{$mahasiswa->dosen->Nama}}</td>
                           <td>
                             <a href="/mahasiswa/{{$mahasiswa->id}}/edit" class="btn btn-warning btn-sm fa fa-pencil"></a>
                             <a href="/mahasiswa/{{$mahasiswa->id}}/hapus" class="btn btn-danger btn-sm fa fa-trash" onclick="return confirm('yakin mau di hapus ?')"></a>
@@ -107,41 +107,21 @@
               <span class="help-block">{{$errors->first('alamat')}}</span>
               @endif
             </div>
-            <div class="form-group {{$errors->has('IPK') ? 'has-error' : ''}}">
-              <label >IPK</label>
-              <input name="IPK"type="text" class="form-control"  placeholder="IPK" value="{{ old('IPK') }}" >
-              @if($errors->has('IPK'))
-              <span class="help-block">{{$errors->first('IPK')}}</span>
-              @endif
-            </div>
-            <div class="form-group {{$errors->has('tipe') ? 'has-error' : ''}}">
+            <div class="form-group {{$errors->has('tipe_id') ? 'has-error' : ''}}">
               <label>Tipe Kepribadian</label>
-                <select name="tipe" class="form-control" value="{{ old('tipe') }}" >
-                  <option value="ENFJ">ENFJ</option>
-                  <option value="ENFP">ENFP</option>
-                  <option value="ENTJ">ENTJ</option>
-                  <option value="ENTP">ENTP</option>
-                  <option value="ESFJ">ESFJ</option>
-                  <option value="ESFP">ESFP</option>
-                  <option value="ESTJ">ESTJ</option>
-                  <option value="ESTP">ESTP</option>
-                  <option value="INTP">INTP</option>
-                  <option value="INTJ">INTJ</option>
-                  <option value="INFP">INFP</option>
-                  <option value="INFJ">INFJ</option>
-                  <option value="ISFJ">ISFJ</option>
-                  <option value="ISFP">ISFP</option>
-                  <option value="ISTJ">ISTJ</option>
-                  <option value="ISTP">ISTP</option>
+                <select name="tipe_id" class="form-control" value="{{ old('tipe_id') }}" >
+                @foreach($tipe as $tipes)
+                  <option value="{{$tipes->id}}">{{$tipes->nama}}</option>
+                  @endforeach
               </select>
               @if($errors->has('tipe'))
               <span class="help-block">{{$errors->first('tipe')}}</span>
               @endif
-            <div class="form-group {{$errors->has('DPA') ? 'has-error' : ''}}">
+            <div class="form-group {{$errors->has('dosen_id') ? 'has-error' : ''}}">
               <label>Nama DPA</label>
-                <select name="DPA" class="form-control" value="{{ old('DPA') }}" >
+                <select name="dosen_id" class="form-control" value="{{ old('dosen_id') }}" >
                   @foreach($data_dosen as $dosen)
-                  <option value="{{}}">{{$dosen->Nama}}</option>
+                  <option value="{{$dosen->id}}">{{$dosen->Nama}}</option>
                   @endforeach
                 </select>
                 @if($errors->has('DPA'))
@@ -167,4 +147,8 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+  
+  
+  </script>
 @endsection

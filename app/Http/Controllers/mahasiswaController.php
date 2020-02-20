@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Artikel;
+Use Alert;
+use Auth;
 
 class mahasiswaController extends Controller
 {
@@ -12,8 +14,10 @@ class mahasiswaController extends Controller
     {
         $data_mahasiswa = \App\mahasiswa::all();
         $data_dosen = \App\dosen::all();
+        $tipe = \App\Tipe::all();
+        
 
-        return view('mahasiswa.index',['data_mahasiswa' => $data_mahasiswa],['data_dosen'=> $data_dosen]);
+        return view('mahasiswa.index',compact('tipe','data_mahasiswa','data_dosen'));
     }
     public function create (Request $request)
     {
@@ -24,9 +28,9 @@ class mahasiswaController extends Controller
             'Nim' => 'required|int|min:8|unique:mahasiswa',
             'jurusan' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'IPK' => 'required|string|max:3',
-            'tipe' => 'required|string|max:255',
-            'DPA' => 'required|string|max:255',
+            
+            'tipe_id' => 'required|string|max:255',
+            'dosen_id' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|',
 
@@ -41,10 +45,10 @@ class mahasiswaController extends Controller
             $user->remember_token = str_random(60);
             $user->save();
 
-       //insert tabel dosen
+       //insert tabel mahasiswa
       $request->request->add(['user_id' => $user->id ]);
       $mahasiswa = \App\mahasiswa::create($request->all());
-      return redirect('/mahasiswa')->with('sukses','data berhasil diinput');
+      return redirect('/mahasiswa')->with('success','data berhasil ditambah');
     }
     public function edit($id)
     {
@@ -71,21 +75,51 @@ class mahasiswaController extends Controller
     {
       $posts= Artikel::latest()->paginate(5);
       return view('mahasiswa.berita',compact('posts'));
+      
     }
     public function profile()
     {
+      $mhs = Auth::user()->mahasiswa->matkul;
+      $ipk1 = Auth::user()->mahasiswa->ipk;
       
-      return view('mahasiswa.profile');
+
+      $data = [];
+      $data2 = [];
+      foreach($ipk1 as $m)
+      {
+        if($ipk1->first()){
+        $data[] = $m->semester;
+        $data2[] = $m->ipk;
+      }
+      }
+      //dd($data2);
+      return view('mahasiswa.profile',compact('data','data2','mhs'));
     }
     public function nilai()
     {
       
-      return view('mahasiswa.nilai');
+      $nilai = Auth::user()->mahasiswa->matkul;
+      return view('mahasiswa.nilai',compact('nilai'));
     }
     public function lihat($id){
 
       $post_detail = Artikel::find($id);
       
       return view('mahasiswa.blog',compact('post_detail'));
+    }
+    public function chat(Request $request)
+    {
+    $data = new \App\Chat;  
+    $data->mahasiswa_id = Auth::user()->mahasiswa->id;
+    $data->dosen_id = Auth::user()->mahasiswa->dosen->id;
+    $data->subjek = $request->subjek;
+    $data->pesan = $request->pesan;
+    $data->save();
+
+    return redirect('/konsultasi');
+      
+
+//      dd($data);
+
     }
 }
