@@ -10,6 +10,7 @@
         <li><a href="/nilai_mhs" class=""><i class="lnr lnr-chart-bars"></i> <span>Nilai</span></a></li>
         <li><a href="/dosen" class=""><i class="lnr lnr-users"></i> <span>Dosen</span></a></li>
         <li><a href="/tabelpost" class=""><i class="lnr lnr-file-empty"></i> <span>Post Artikel</span></a></li>
+        <li><a href="/sistem" class=""><i class="lnr lnr-users"></i> <span>Sistem Cerdas</span></a></li>
         @endif
         @if(auth()->user()->role == 'dosen')
         <li><a href="/tabel" class=""><i class="lnr lnr-dice"></i> <span>Tabel mahasiswa</span></a></li>

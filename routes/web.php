@@ -48,6 +48,7 @@ Route::get('/ipk/{id}/hapus',"adminController@deleteipk");
 Route::get('/jadwal',"adminController@jadwal");
 Route::get('/nilai_mhs',"adminController@nilai_mhs");
 Route::get('/nilai/{id}',"adminController@showNilai");
+Route::get('/sistem',"adminController@sistem");
 
 });
 

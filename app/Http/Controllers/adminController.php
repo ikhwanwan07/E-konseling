@@ -210,5 +210,9 @@ class adminController extends Controller
       $post->delete();
       return redirect('tabelpost')->with('sukses','data berhasil didelete');
     }
+    public function sistem(){
+      return view('op.sistem');
+      
+    }
 
 }

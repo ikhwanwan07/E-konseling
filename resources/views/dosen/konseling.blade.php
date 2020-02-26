@@ -29,6 +29,7 @@
 												<th>Nim</th>
 												<th>Kategori</th>
 												<th>Pesan</th>
+												<th>Tanggal</th>
                                                 <th>Aksi</th>
 												
 											</tr>
@@ -38,6 +39,7 @@
 											<td><a href="#">{{$c->mahasiswa->Nim}}</a></td>
 											<td>{{$c->subjek}}</td>
 											<td>{{$c->pesan}}</td>
+											<td>{{$c->created_at}}</td>
                                             <td>
 											<a href="#" class="btn btn-primary ">Balas</a>
 												@endforeach
