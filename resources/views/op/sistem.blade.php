@@ -29,6 +29,7 @@
                                 <input type="file" class="form-control lebar">
                                 </div>
                                 <button type="submit" class="btn btn-primary"> submit</button>
+                                <button type="submit" class="btn btn-primary"><a href="/proses"> proses</a>   </button>
 									
 									
 								</div>

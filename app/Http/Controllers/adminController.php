@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+use Phpml\Clustering\KMeans;
+
 use Illuminate\Http\Request;
 use App\Artikel;
 use App\categoris;
@@ -11,6 +14,7 @@ use App\IPK;
 use Auth;
 use Alert;
 use DB;
+
 
 class adminController extends Controller
 {
@@ -87,7 +91,22 @@ class adminController extends Controller
     public function profilemhs($id)
     {
       $lihat = mahasiswa::find($id);
-      return view('dosen.profile',compact('lihat'));
+      $mhs = $lihat->matkul;
+      $ipk1 = $lihat->ipk;
+      
+
+      $data = [];
+      $data2 = [];
+      foreach($ipk1 as $m)
+      {
+        if($ipk1->first()){
+        $data[] = $m->semester;
+        $data2[] = $m->ipk;
+      }
+      }
+      //dd($data2);
+
+      return view('dosen.profile',compact('lihat','data','data2'));
     }
     public function setting(){
       return view('setting');
@@ -214,5 +233,20 @@ class adminController extends Controller
       return view('op.sistem');
       
     }
+    public function proses()
+    {
+      $kmeans = new KMeans(2);
+      $kmeans = new KMeans(4, KMeans::INIT_RANDOM);
 
+      $samples = [[1, 1], [8, 7], [1, 2], [7, 8], [2, 1], [8, 9]];
+//Or if you need to keep your indentifiers along with yours samples you can use array keys as labels.
+$samples = [ 'Label1' => [1, 1], 'Label2' => [8, 7], 'Label3' => [1, 2]];
+
+$kmeans = new KMeans(2);
+$kmeans->cluster($samples);
+// return [0=>[[1, 1], ...], 1=>[[8, 7], ...]] or [0=>['Label1' => [1, 1], 'Label3' => [1, 2], ...], 1=>['Label2' => [8, 7], ...]]
+
+return $kmeans;
+
+}
 }

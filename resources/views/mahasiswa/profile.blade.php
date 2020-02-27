@@ -398,7 +398,7 @@ Highcharts.chart('chartNilai', {
     },
     series: [{
         name: 'IPK',
-        data: {!!json_encode($data2) !!}
+        data: {!! json_encode($data2) !!},
 
     }]
 });

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e34d086c04e83c3190add161163d8a3",
+    "content-hash": "1db246f47b43d68e6f5865a39ace0c15",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -151,6 +151,47 @@
                 "parser"
             ],
             "time": "2019-03-17T18:48:37+00:00"
+        },
+        {
+            "name": "jacobemerick/kmeans",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jacobemerick/kmeans.git",
+                "reference": "74808b7b65546e96449b0c8cca66b42236c4a6d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jacobemerick/kmeans/zipball/74808b7b65546e96449b0c8cca66b42236c4a6d8",
+                "reference": "74808b7b65546e96449b0c8cca66b42236c4a6d8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jacobemerick\\KMeans\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Emerick"
+                }
+            ],
+            "description": "k-means clustering implemented in PHP",
+            "keywords": [
+                "clustering",
+                "data analysis",
+                "k-means",
+                "statistics"
+            ],
+            "time": "2014-07-31T00:59:28+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -681,6 +722,7 @@
                 "cron",
                 "schedule"
             ],
+            "abandoned": "dragonmantank/cron-expression",
             "time": "2017-01-23T04:29:33+00:00"
         },
         {
@@ -843,6 +885,61 @@
                 "random"
             ],
             "time": "2019-01-03T20:59:08+00:00"
+        },
+        {
+            "name": "php-ai/php-ml",
+            "version": "0.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-ai/php-ml.git",
+                "reference": "5e02b893e904761cd7e2415b11778cd421494c07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-ai/php-ml/zipball/5e02b893e904761cd7e2415b11778cd421494c07",
+                "reference": "5e02b893e904761cd7e2415b11778cd421494c07",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpbench/phpbench": "^0.14.0",
+                "phpstan/phpstan-phpunit": "^0.10",
+                "phpstan/phpstan-shim": "^0.10",
+                "phpstan/phpstan-strict-rules": "^0.10",
+                "phpunit/phpunit": "^7.0.0",
+                "symplify/coding-standard": "^5.1",
+                "symplify/easy-coding-standard": "^5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phpml\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arkadiusz Kondas",
+                    "email": "arkadiusz.kondas@gmail.com"
+                }
+            ],
+            "description": "PHP-ML - Machine Learning library for PHP",
+            "homepage": "https://github.com/php-ai/php-ml",
+            "keywords": [
+                "Neural network",
+                "artificial intelligence",
+                "computational learning theory",
+                "data science",
+                "feature extraction",
+                "machine learning",
+                "pattern recognition"
+            ],
+            "time": "2019-03-20T22:22:45+00:00"
         },
         {
             "name": "psr/log",
