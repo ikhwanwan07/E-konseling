@@ -57,6 +57,7 @@
         </tr>
         @endforeach
 </table>
+<div>{{$data_dosen->links()}}</div>
 
 </div>
 </div>
@@ -103,6 +104,8 @@
               </div>
               <button type="submit" class="btn btn-primary float-right">Submit</button>
             </form>
+
+            
       </div>
     </div>
   </div>

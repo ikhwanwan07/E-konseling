@@ -59,7 +59,9 @@
                   </table>
 									</table>
 								</div>
+               <div>{{$mahasiswa->links()}} </div>
 							</div>
+            
         </div>
       </div>
     </div>

@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\DB;
 use Alert;
 use Auth;
 use mahasiswa;
+use \App\dosen;
 
 class dosenController extends Controller
 {
     public function index()
     {
-        $data_dosen = \App\dosen::all();
+        $data_dosen = dosen::paginate(5);
         return view('dosen.index',['data_dosen' => $data_dosen]);
     }
     public function create(Request $request)
@@ -83,5 +84,10 @@ class dosenController extends Controller
       
       return redirect('/konseling/'.$balas->chat_id);
 
+    }
+
+    public function jadwal()
+    {
+      return view('dosen.jadwal');
     }
 }

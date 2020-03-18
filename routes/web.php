@@ -63,7 +63,7 @@ Route::group(['middleware'=>['auth','CheckRole:dosen,admin,mahasiswa']],function
     Route::get('/chat',"dosenController@chat");
     Route::post('/balas',"dosenController@balas");
     Route::post('/balasmhs',"adminController@balas");
-   
+    Route::get('/jadwalkonsultasi',"dosenController@jadwal");
     Route::get('/konsentrasi',"adminController@konsentrasi");
     Route::get('/tabel',"adminController@tabel");
     Route::get('/profile/{id}',"adminController@profilemhs")->name('showProfile');

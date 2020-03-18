@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\DB;
 use App\Artikel;
 Use Alert;
 use Auth;
+use \App\mahasiswa;
 
 class mahasiswaController extends Controller
 {
     public function index()
     {
-        $data_mahasiswa = \App\mahasiswa::all();
+        $data_mahasiswa = mahasiswa::paginate(10);
         $data_dosen = \App\dosen::all();
         $tipe = \App\Tipe::all();
         
