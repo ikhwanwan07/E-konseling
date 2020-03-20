@@ -16,6 +16,10 @@ class dosen extends Model
     	return $this->hasMany('App\Chat');
     }
 
+    public function jadwal(){
+    	return $this->hasMany('App\Jadwal');
+    }
+
     
 
 }

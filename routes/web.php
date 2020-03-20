@@ -74,6 +74,10 @@ Route::group(['middleware'=>['auth','CheckRole:dosen,admin,mahasiswa']],function
     Route::get('/nilai',"mahasiswaController@nilai");
     Route::get('/Berita/{id}',"mahasiswaController@lihat")->name('lihat');
     Route::get('/setting',"adminController@setting");
+    Route::post('/tambahjadwal',"dosenController@tambahjadwal");
+    Route::get('/jadwal/{id}/edit',"adminController@editjadwal");
+    Route::post('/jadwal/{id}/update',"adminController@updatejadwal");
+    Route::get('/jadwal/{id}/hapus',"adminController@deletejadwal");
 
 
     
