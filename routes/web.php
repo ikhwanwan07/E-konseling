@@ -50,6 +50,8 @@ Route::get('/nilai_mhs',"adminController@nilai_mhs");
 Route::get('/nilai/{id}',"adminController@showNilai");
 Route::get('/sistem',"adminController@sistem");
 Route::get('/proses',"adminController@proses");
+Route::get('/mahasiswa/export_excel', 'adminController@export_excel');
+Route::post('/mahasiswa/import_excel', 'adminController@import_excel');
 
 });
 
@@ -75,9 +77,9 @@ Route::group(['middleware'=>['auth','CheckRole:dosen,admin,mahasiswa']],function
     Route::get('/Berita/{id}',"mahasiswaController@lihat")->name('lihat');
     Route::get('/setting',"adminController@setting");
     Route::post('/tambahjadwal',"dosenController@tambahjadwal");
-    Route::get('/jadwal/{id}/edit',"adminController@editjadwal");
-    Route::post('/jadwal/{id}/update',"adminController@updatejadwal");
-    Route::get('/jadwal/{id}/hapus',"adminController@deletejadwal");
+    Route::get('/jadwal/{id}/edit',"dosenController@editjadwal");
+    Route::post('/jadwal/{id}/update',"dosenController@updatejadwal");
+    Route::get('/jadwal/{id}/hapus',"dosenController@deletejadwal");
 
 
     

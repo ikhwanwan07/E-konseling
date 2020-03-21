@@ -24,6 +24,7 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Tabel Mahasiswa</h3>
                   <i class="fa fa-user-plus right" data-toggle="modal" data-target="#exampleModal"></i>
+                  
 								</div>
 								<div class="panel-body">
 									<table class="table table-hover" id="dataTable">
@@ -59,7 +60,7 @@
                   </table>
 									</table>
 								</div>
-               <div>{{$mahasiswa->links()}} </div>
+               <div> disini links</div>
 							</div>
             
         </div>

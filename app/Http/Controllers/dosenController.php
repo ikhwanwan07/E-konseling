@@ -120,7 +120,7 @@ class dosenController extends Controller
        $jadwal6->jam = $request->jam6;
       
       $jadwal1->save();
-    $jadwal2->save();
+       $jadwal2->save();
       $jadwal3->save();
       $jadwal4->save();
       $jadwal5->save();
@@ -131,9 +131,10 @@ class dosenController extends Controller
        return redirect('/jadwalkonsultasi')->with('success','data berhasil ditambah');
     }
 
-    public function editjadwal()
+    public function editjadwal($id)
     {
-
+      $jadwal = \App\Jadwal::find($id);
+      return view('dosen.editjadwal',compact('jadwal'));
     }
     public function updatejadwal()
     {
@@ -141,6 +142,8 @@ class dosenController extends Controller
     }
     public function hapusjadwal()
     {
-      
+      $dosen = \App\Jadwal::find($id);
+      $dosen->delete();
+      return redirect('/jadwalkonsultasi')->with('sukses','data berhasil didelete');
     }
 }

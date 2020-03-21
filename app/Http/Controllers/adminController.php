@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 
 use Phpml\Clustering\KMeans;
-
+use App\Imports\mahasiswaImport;
+use App\Exports\mahasiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Artikel;
 use App\categoris;
@@ -230,7 +233,9 @@ class adminController extends Controller
       return redirect('tabelpost')->with('sukses','data berhasil didelete');
     }
     public function sistem(){
-      return view('op.sistem');
+
+      $data = \App\Data::all();
+      return view('op.sistem',compact('data'));
       
     }
     public function proses()
@@ -249,4 +254,37 @@ $kmeans->cluster($samples);
 return $kmeans;
 
 }
+
+public function export_excel()
+	{
+		return Excel::download(new mahasiswaExport, 'siswa.xlsx');
+  }
+  
+  public function import_excel(Request $request)
+	{
+
+    //dd($request->all());
+				// validasi
+        $this->validate($request, [
+          'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+     
+        // menangkap file excel
+        $file = $request->file('file');
+     
+        // membuat nama file unik
+        $nama_file = $file->getClientOriginalName();
+     
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('file_siswa',$nama_file);
+     
+        //import data
+        Excel::import(new mahasiswaImport,$request->file('file'));
+     
+        // notifikasi dengan session
+      
+     
+        // alihkan halaman kembali
+        return redirect('/sistem')->with('success','data berhasil diimport');
+	}
 }
