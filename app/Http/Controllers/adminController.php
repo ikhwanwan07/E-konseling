@@ -252,7 +252,7 @@ class adminController extends Controller
       // set attribute untuk data matriks clustering (berdasarkan nama kolom pada data)
       $kmeans->setAttributes(['ipk_sem_1','ipk_sem_2','ipk_sem_3','ipk_sem_4','ipk_sem_5']);
       
-      //return hasil clustering
+       //return hasil clustering
       print_r($kmeans->clustering());
     }
 
