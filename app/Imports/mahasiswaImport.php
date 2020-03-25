@@ -5,36 +5,30 @@ namespace App\Imports;
 use App\Data;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class mahasiswaImport implements ToModel
+class mahasiswaImport implements ToModel, WithStartRow
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    public function model(Collection $row)
+    public function startRow(): int
     {
-
-        dd($row);
-
-        foreach ($rows as $row) 
-        {
-           // Data::create([
-             //   'nim' => $row[1],
-               // 'nama' => $row[1],
-                //'nim' => $row[1],
-            //]);
-        }
-       // return new Data([
-         //   'nim' => $row[1],
-           // 'nama' => $row[2], 
-            //'ipk1' => $row[3],
-            //'ipk2' => $row[4],
-            //'ipk3' => $row[5],
-            //'ipk4' => $row[6],
-            //'ipk5' => $row[7],
-
-        //]);
+      return 2;
+    }
+    
+    public function model(array $row)
+    {        
+        return new Data([
+          'nim' => $row[1],
+          'nama' => $row[2],
+          'ipk_sem_1' => $row[3],
+          'ipk_sem_2' => $row[4],
+          'ipk_sem_3' => $row[5],
+          'ipk_sem_4' => $row[6],
+          'ipk_sem_5' => $row[7]
+        ]);
     }
 }

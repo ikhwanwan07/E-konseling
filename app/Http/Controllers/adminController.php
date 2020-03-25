@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use Phpml\Clustering\KMeans;
+use App\Lib\KMeans;
 use App\Imports\mahasiswaImport;
 use App\Exports\mahasiswaExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -14,6 +14,7 @@ use App\categoris;
 use App\mahasiswa;
 use App\User;
 use App\IPK;
+use App\Data;
 use Auth;
 use Alert;
 use DB;
@@ -238,53 +239,51 @@ class adminController extends Controller
       return view('op.sistem',compact('data'));
       
     }
-    public function proses()
+
+    public function proses($cluster)
     {
-      $kmeans = new KMeans(2);
-      $kmeans = new KMeans(4, KMeans::INIT_RANDOM);
+      //get data
+      $data = Data::all()->toArray();
 
-      $samples = [[1, 1], [8, 7], [1, 2], [7, 8], [2, 1], [8, 9]];
-//Or if you need to keep your indentifiers along with yours samples you can use array keys as labels.
-$samples = [ 'Label1' => [1, 1], 'Label2' => [8, 7], 'Label3' => [1, 2]];
-
-$kmeans = new KMeans(2);
-$kmeans->cluster($samples);
-// return [0=>[[1, 1], ...], 1=>[[8, 7], ...]] or [0=>['Label1' => [1, 1], 'Label3' => [1, 2], ...], 1=>['Label2' => [8, 7], ...]]
-
-return $kmeans;
-
-}
+      //init kmeans object
+      $kmeans = new KMeans($data, $cluster);
+      //set label berdasarkan data (berdasarkan nama kolom pada data)
+      $kmeans->setLabel('nim');
+      // set attribute untuk data matriks clustering (berdasarkan nama kolom pada data)
+      $kmeans->setAttributes(['ipk_sem_1','ipk_sem_2','ipk_sem_3','ipk_sem_4','ipk_sem_5']);
+      
+      //return hasil clustering
+      print_r($kmeans->clustering());
+    }
 
 public function export_excel()
 	{
 		return Excel::download(new mahasiswaExport, 'siswa.xlsx');
   }
   
-  public function import_excel(Request $request)
+  public function import_excel(Request $request) 
 	{
-
-    //dd($request->all());
-				// validasi
-        $this->validate($request, [
-          'file' => 'required|mimes:csv,xls,xlsx'
-        ]);
-     
-        // menangkap file excel
-        $file = $request->file('file');
-     
-        // membuat nama file unik
-        $nama_file = $file->getClientOriginalName();
-     
-        // upload ke folder file_siswa di dalam folder public
-        $file->move('file_siswa',$nama_file);
-     
-        //import data
-        Excel::import(new mahasiswaImport,$request->file('file'));
-     
-        // notifikasi dengan session
-      
-     
-        // alihkan halaman kembali
-        return redirect('/sistem')->with('success','data berhasil diimport');
+    //Remove all data first
+    Data::truncate();
+    
+    // validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_cluster',$nama_file);
+ 
+		// import data
+		Excel::import(new mahasiswaImport, public_path('/file_cluster/'.$nama_file));
+ 
+		// alihkan halaman kembali
+		return redirect('/sistem')->with('success','Data Berhasil Diimport!');
 	}
 }

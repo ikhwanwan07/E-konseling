@@ -49,7 +49,7 @@ Route::get('/jadwal',"adminController@jadwal");
 Route::get('/nilai_mhs',"adminController@nilai_mhs");
 Route::get('/nilai/{id}',"adminController@showNilai");
 Route::get('/sistem',"adminController@sistem");
-Route::get('/proses',"adminController@proses");
+Route::get('/proses/{cluster}',"adminController@proses");
 Route::get('/mahasiswa/export_excel', 'adminController@export_excel');
 Route::post('/mahasiswa/import_excel', 'adminController@import_excel');
 
