@@ -3,6 +3,7 @@
 namespace App\Lib;
 
 use Illuminate\Routing\Controller;
+use App\ClusteringResult;
 use App\Data;
 use DB;
 
@@ -217,7 +218,15 @@ class KMeans extends Controller
         foreach($riwayat[$iteration-1]['result'] as $key => $row){
             $cluster[$key] = $row['cluster'];
         }
+        // Sort result based on cluster
         array_multisort($cluster, SORT_ASC, $riwayat[$iteration-1]['result']);
+        
+        // Save result to database
+        ClusteringResult::truncate();
+        foreach($riwayat[$iteration-1]['result'] as $result){
+            ClusteringResult::create($result);
+        }
+       
 
         return $riwayat[$iteration-1];
       
