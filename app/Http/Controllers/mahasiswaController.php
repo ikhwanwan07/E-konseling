@@ -20,6 +20,7 @@ class mahasiswaController extends Controller
 
         return view('mahasiswa.index',compact('tipe','data_mahasiswa','data_dosen'));
     }
+
     public function create (Request $request)
     {
 
@@ -37,28 +38,28 @@ class mahasiswaController extends Controller
 
         ]);
         
-              //insert tabel user
-            $user = new \App\User;
-            $user->role = 'mahasiswa';
-            $user->name = $request->Nama;
-            $user->email = $request->email;
-            $user->password= bcrypt($request->password);
-            $user->remember_token = str_random(60);
-            $user->save();
+        //insert tabel user
+        $user = new \App\User;
+        $user->role = 'mahasiswa';
+        $user->name = $request->Nama;
+        $user->email = $request->email;
+        $user->password= bcrypt($request->password);
+        $user->remember_token = str_random(60);
+        $user->save();
 
-       //insert tabel mahasiswa
-      $request->request->add(['user_id' => $user->id ]);
-      $mahasiswa = \App\mahasiswa::create($request->all());
-      return redirect('/mahasiswa')->with('success','data berhasil ditambah');
+        //insert tabel mahasiswa
+        $request->request->add(['user_id' => $user->id ]);
+        $mahasiswa = \App\mahasiswa::create($request->all());
+        return redirect('/mahasiswa')->with('success','data berhasil ditambah');
     }
+
     public function edit($id)
     {
       $mahasiswa = \App\mahasiswa::find($id);
       $data_dosen = \App\dosen::all();
       return view('mahasiswa/edit',['mahasiswa'=> $mahasiswa],['data_dosen'=> $data_dosen]);
-
-
     }
+
     public function update(Request $request,$id)
     {
       $mahasiswa = \App\mahasiswa::find($id);
@@ -66,6 +67,7 @@ class mahasiswaController extends Controller
       return redirect ('/mahasiswa')->with('sukses','data berhasil diupdate');
 
     }
+
     public function delete($id)
     {
       $mahasiswa = \App\mahasiswa::find($id);
@@ -89,9 +91,9 @@ class mahasiswaController extends Controller
       foreach($ipk1 as $m)
       {
         if($ipk1->first()){
-        $data[] = $m->semester;
-        $data2[] = $m->ipk;
-      }
+            $data[] = $m->semester;
+            $data2[] = $m->ipk;
+        }
       }
       //dd($data2);
       return view('mahasiswa.profile',compact('data','data2','mhs'));

@@ -240,7 +240,7 @@ class adminController extends Controller
       
     }
 
-    public function proses($cluster)
+    public function proses($cluster, $iteration = null, $centroids = null)
     {
       //get data
       $data = Data::all()->toArray();
@@ -252,8 +252,26 @@ class adminController extends Controller
       // set attribute untuk data matriks clustering (berdasarkan nama kolom pada data)
       $kmeans->setAttributes(['ipk_sem_1','ipk_sem_2','ipk_sem_3','ipk_sem_4','ipk_sem_5']);
       
+      $custom = [];
+      if($iteration != null){
+        $custom[] = $iteration;
+      }
+
+      if($centroids != null){
+        $array_centroid = explode(',',$centroids);
+        if(sizeof($array_centroid) != $cluster){
+          return ['status'=>'error', 'message'=>'Jumlah centroid harus sama dengan cluster!'];
+        }
+        if(in_array('',$array_centroid) || in_array(null,$array_centroid)){
+          return ['status'=>'error', 'message'=>'Centroid harus terisi semua!'];
+        }
+        $custom[] = $array_centroid;
+      }
+
+      $kmeans->setCustom($custom);
+
        //return hasil clustering
-      print_r($kmeans->clustering());
+      return $kmeans->clustering();
     }
 
 public function export_excel()
