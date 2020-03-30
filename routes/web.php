@@ -22,7 +22,7 @@ Route::post('/postLogin',"AuthController@postLogin");
 Route::get('/logout',"AuthController@logout");
 
 Route::group(['middleware'=>['auth','CheckRole:admin']],function(){
-Route::get('/dashboard',"adminController@index");
+//Route::get('/dashboard',"adminController@index");
 Route::get('/post',"adminController@post");
 Route::get('/mahasiswa',"mahasiswaController@index");
 Route::post('/mahasiswa/create',"mahasiswaController@create");

@@ -15,7 +15,7 @@
         @if(auth()->user()->role == 'dosen')
         <li><a href="/tabel" class=""><i class="lnr lnr-dice"></i> <span>Tabel mahasiswa</span></a></li>
         <li><a href="/tipe" class=""><i class="lnr lnr-list"></i> <span>Tipe kepribadian</span></a></li>
-        <li><a href="/konseling" class=""><i class="lnr lnr-bubble"></i> <span>Konseling</span></a></li>
+        <li><a href="/konseling" class=""><i class="lnr lnr-bubble"></i> <span>Konseling</span>   <span class="badge bg-danger">5</span></a></li>
         <li><a href="/jadwalkonsultasi" class=""><i class="lnr lnr-bookmark"></i> <span>Jadwal</span></a></li>
         @endif
         @if(auth()->user()->role == 'mahasiswa')
