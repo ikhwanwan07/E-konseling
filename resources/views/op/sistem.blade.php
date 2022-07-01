@@ -7,6 +7,14 @@
     .lebar {
         width: 300px;
     }
+
+	.form-control {
+		width: 200px;
+	}
+	.customize {
+		margin-top : -2px;
+		margin-bottom :10px;
+	}
 </style>
 
 <div class="main">
@@ -39,7 +47,7 @@
 					
 												<label>Pilih file excel</label>
 												<div class="form-group">
-													<input type="file" name="file" required="required">
+													<input type="file" name="file" required="required" class="form-control">
 												</div>
 					
 											</div>
@@ -81,20 +89,35 @@
 							</table>
 							<label for="">Insert Cluster</label>
 							<div class="form-group">
+<<<<<<< HEAD
 								<input type="number" name="cluster" id="cluster" min="1">
 								<input type="hidden" name="url" id="url" value="{{ url('') }}">
 								<button id="custom-btn">Customize</button>
+=======
+								<input type="number" name="cluster" id="cluster" min="1" class="form-control">
+								<input type="hidden" name="url" id="url" value="{{ url('') }}" class="form-control">
+								<br>
+								<button class="btn btn-primary customize" id="custom-btn">Customize</button>
+>>>>>>> 2ce574eb550d975175d49c7ecd8190c4b8b7f019
 							</div>
 							<div id="customize-clustering" style="padding:10px; border:1px solid #ddd; margin-bottom:20px; display:none">
 								<label for="">Custom Clustering</label>
 								<div class="form-group"></div>
 								<div class="form-group">
 									<label for="iteration" style="font-weight: normal;">Jumlah Iterasi &nbsp;&nbsp;&nbsp;: </label>
+<<<<<<< HEAD
 									<input type="number" name="iteration" id="iteration" min="1" placeholder="iteration" disabled>
 								</div>
 								<div class="form-group">
 									<label for="centroids" style="font-weight: normal;">Centroids [NIM] :</label>
 									<input style="width:350px" type="text"   name="centroids" id="centroids" placeholder="... , ... , ... , ... , ... " disabled>
+=======
+									<input type="number" name="iteration" id="iteration" min="1" placeholder="iteration" class="form-control" disabled>
+								</div>
+								<div class="form-group">
+									<label for="centroids" style="font-weight: normal;">Centroids [NIM] :</label>
+									<input class="form-control" style="width:350px" type="text"   name="centroids" id="centroids" placeholder="... , ... , ... , ... , ... " disabled>
+>>>>>>> 2ce574eb550d975175d49c7ecd8190c4b8b7f019
 									Cth: <span>16523035,16523136,16523200</span>
 								</div>
 								<div class="form-group">
