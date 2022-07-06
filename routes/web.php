@@ -17,47 +17,9 @@ Route::get('/', function () {
 
 
 
-<<<<<<< HEAD
 Route::get('/login', "AuthController@login")->name('login');
 Route::post('/postLogin', "AuthController@postLogin");
 Route::get('/logout', "AuthController@logout");
-=======
-Route::get('/login',"AuthController@login")->name('login');
-Route::post('/postLogin',"AuthController@postLogin");
-Route::get('/logout',"AuthController@logout");
-
-Route::group(['middleware'=>['auth','CheckRole:admin']],function(){
-//Route::get('/dashboard',"adminController@index");
-Route::get('/post',"adminController@post");
-Route::get('/mahasiswa',"mahasiswaController@index");
-Route::post('/mahasiswa/create',"mahasiswaController@create");
-Route::get('/mahasiswa/{id}/edit',"mahasiswaController@edit");
-Route::post('/mahasiswa/{id}/update',"mahasiswaController@update");
-Route::get('/mahasiswa/{id}/hapus',"mahasiswaController@delete");
-Route::get('/dosen',"dosenController@index");
-Route::post('/dosen/create',"dosenController@create");
-Route::get('/dosen/{id}/edit',"dosenController@edit");
-Route::post('/dosen/{id}/update',"dosenController@update");
-Route::get('/dosen/{id}/hapus',"dosenController@delete");
-Route::get('/tabelpost ',"adminController@show")->name('tabelpost');
-Route::get('/post',"adminController@tambah");
-Route::get('/postprestasi',"adminController@tambahprestasi");
-Route::post('/postBerita',"adminController@postBerita")->name('post.berita');
-Route::get('/Berita/{id}/edit',"adminController@edit");
-Route::post('/Berita/{id}/update',"adminController@update");
-Route::get('/Berita/{id}/hapus',"adminController@delete");
-Route::get('/ipk',"adminController@ipk");
-Route::get('/ipk/{id}',"adminController@showipk");
-Route::post('/ipkcreate',"adminController@ipkcreate");
-Route::get('/ipk/{id}/hapus',"adminController@deleteipk");
-Route::get('/jadwal',"adminController@jadwal");
-Route::get('/nilai_mhs',"adminController@nilai_mhs");
-Route::get('/nilai/{id}',"adminController@showNilai");
-Route::get('/sistem',"adminController@sistem");
-Route::get('/proses/{cluster}',"adminController@proses");
-Route::get('/mahasiswa/export_excel', 'adminController@export_excel');
-Route::post('/mahasiswa/import_excel', 'adminController@import_excel');
->>>>>>> 2ce574eb550d975175d49c7ecd8190c4b8b7f019
 
 Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/dashboard', "adminController@index");

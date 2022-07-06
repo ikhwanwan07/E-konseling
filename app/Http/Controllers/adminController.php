@@ -19,6 +19,7 @@ use Auth;
 use Alert;
 use App\Konsentrasi;
 use DB;
+use App\Jadwal;
 
 
 class adminController extends Controller
@@ -82,7 +83,8 @@ class adminController extends Controller
 
   public function jadwal()
   {
-    return view('op.jadwal');
+    $jadwal = Jadwal::all();
+    return view('op.jadwal', compact('jadwal'));
   }
   public function nilai_mhs()
   {

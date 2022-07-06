@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tipe extends Model
 {
-    protected $table='tipe';
+    protected $table = 'tipe';
 
-    public function mahasiswa(){
-       
-        
-        return $this->hasOne('App\mahasiswa');
+    public function mahasiswa()
+    {
+
+        return $this->hasMany('App\mahasiswa');
     }
 }
