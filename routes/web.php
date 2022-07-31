@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/ipk/{id}', "adminController@showipk");
     Route::post('/ipkcreate', "adminController@ipkcreate");
     Route::get('/ipk/{id}/hapus', "adminController@deleteipk");
+    Route::get('/ipk/{id}/edit', "adminController@editipk");
+    Route::post('/ipk/{id}/update', "adminController@updateipk");
     Route::get('/jadwal', "adminController@jadwal");
     Route::get('/nilai_mhs', "adminController@nilai_mhs");
     Route::get('/nilai/{id}', "adminController@showNilai");

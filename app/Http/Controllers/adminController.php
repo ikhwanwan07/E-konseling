@@ -59,16 +59,53 @@ class adminController extends Controller
 
     return view('op.showIPK', compact('mahasiswa', 'mhs'));
   }
-  public function ipkcreate(Request $request)
+
+  public function editipk($id){
+    $dataipk = IPK::find($id);
+    return view('op.editIPK',compact('dataipk'));
+  }
+
+  public function updateipk($id, Request $request)
   {
 
+    $ipk = IPK::find($id);
 
-    //if (IPK::whereIn(['user_id','semester','tahun_ajaran'],$request->user_id,$request->semester,$request->tahun_ajaran)->exists()) {
-    //return redirect('/ipk')->with('info','data sudah ada');
-    //}
+    if (IPK::where('mahasiswa_id','=',$request->mahasiswa_id)
+      ->where('tahun_ajaran','=',$request->tahun_ajaran)
+      ->where('semester','=',$request->semester)
+      ->exists()) {
+    return redirect()->back()->with('info','data sudah ada');
+    }else {
+      $ipk->update($request->all());
+      return redirect('/ipk'.$request->mahasiswa_id);
+    }
+   
+   
+  }
+
+  public function ipkcreate(Request $request){
+// if ($orderers = DB::table('ipk')->where(function($query) use ($term) {
+//   $query->where('mahasiswa_id',$request->mahasiswa_id)
+//           ->where('tahun_ajaran',$request->tahun_ajaran)
+//           ->where('semester',$request->semester)
+// })->exist()) {
+//   return redirect()->back()->with('info','data sudah ada');
+// }else {
+//   $ipk = \App\IPK::create($request->all());
+//    return redirect('/ipk')->with('success', 'data berhasil ditambah');
+// } 
+
+
+
+    if (IPK::where('mahasiswa_id','=',$request->mahasiswa_id)
+      ->where('tahun_ajaran','=',$request->tahun_ajaran)
+      ->where('semester','=',$request->semester)
+      ->exists()) {
+    return redirect()->back()->with('info','data sudah ada');
+    }else {
     $ipk = \App\IPK::create($request->all());
     return redirect('/ipk')->with('success', 'data berhasil ditambah');
-
+    }
     //return $ipk;
 
   }

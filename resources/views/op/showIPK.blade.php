@@ -38,7 +38,7 @@
 										<td>{{$m->ipk}}</td>
 										<td>
 
-											<a href="#" class="btn btn-warning fa fa-pencil" data-toggle="modal" data-target="#exampleModal"></a>
+											<a href="/ipk/{{$m->id}}/edit" class="btn btn-warning fa fa-pencil"></a>
 											<a href="/ipk/{{$m->id}}/hapus" class="btn btn-danger fa fa-trash"></a>
 										</td>
 										@endforeach
