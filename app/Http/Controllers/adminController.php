@@ -139,6 +139,19 @@ class adminController extends Controller
 
     // return $mhs;
   }
+
+  public function deleteNilai()
+  {
+    return "ini delete nilai";
+  }
+  public function editNilai()
+  {
+    return "ini editnilai";
+  }
+  public function updateNilai()
+  {
+    return "ini update nilai";
+  }
   public function showNilai($id)
   {
     $mhs1 = \App\mahasiswa::find($id);

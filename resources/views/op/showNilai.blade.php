@@ -40,8 +40,8 @@
 											<td>{{$m->SKS}}</td>
 											<td>{{$m->pivot->nilai}}</td>	
 											<td>
-											<a href="#" class="btn btn-warning fa fa-pencil" data-toggle="modal" data-target="#exampleModal"></a>
-											<a href="#" class="btn btn-danger fa fa-trash"></a>
+											<a href="'/edit-nilai-mhs/{{$m->id}}" class="btn btn-warning fa fa-pencil" ></a>
+											<a href="/delete-nilai-mhs/{{$m->id}}" class="btn btn-danger fa fa-trash"></a>
 												
 											</td>								
 											</tr>
