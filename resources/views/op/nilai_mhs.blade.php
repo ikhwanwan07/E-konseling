@@ -56,47 +56,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form action="#" method="POST">
-          {{csrf_field()}}
-              <div class="form-group" >
-                <label >Nama</label>
-				 <select name="" id="" class="form-control">
-				 @foreach($mhs as $m)
-				<option value="">{{$m->Nama}}</option>
-				@endforeach
-				</select>
-              </div>
-              <div class="form-group" >
-                <label >Nama Mata Kuliah</label>
-				<select name="" id="" class="form-control">
-				@foreach($matkul as $matkuls)
-				<option value="">{{$matkuls->Mata_kuliah}}</option>
-				@endforeach
-				</select>
-                
-              </div>
-			   <div class="form-group">
-                <label >Tahun ajaran</label>
-				<select name="tipe" class="form-control"  >
-                  <option value="">A</option>
-                  <option value="">A-</option>
-                  <option value="">A/B</option>
-                  <option value="">B+</option>
-				  <option value="">B</option>
-				  <option value="">B/C</option>
-				  <option value="">C+</option>
-				  <option value="">C</option>
-				  <option value="">C-</option>
-				  <option value="">D</option>
-				  <option value="">E</option>
-				  <option value="">F</option>
-                  
-              </select>
-              </div>
-              <button type="submit" class="btn btn-primary float-right">Submit</button>
-            </form>
-      </div>
+      
     </div>
   </div>
 </div>

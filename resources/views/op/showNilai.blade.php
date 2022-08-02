@@ -17,7 +17,8 @@
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Tabel Nilai Mahasiswa</h3>
-									
+									<i class="fa fa-user-plus right" data-toggle="modal" data-target="#exampleModal"></i>
+
 									
 								</div>
 								<div class="panel-body">
@@ -63,40 +64,40 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="#" method="POST">
+        <form action="/add-nilai-mhs/{{$m->id}}" method="POST">
           {{csrf_field()}}
               <div class="form-group" >
                 <label >Nama</label>
-				 <select name="" id="" class="form-control">
+				 <select name="mahasiswa_id" id="" class="form-control">
 				 @foreach($mhs as $m)
-				<option value="">{{$m->Nama}}</option>
+				<option value="{{$m->id}}">{{$m->Nama}}</option>
 				@endforeach
 				</select>
               </div>
               <div class="form-group" >
                 <label >Nama Mata Kuliah</label>
-				<select name="" id="" class="form-control">
+				<select name="matkul_id" id="" class="form-control">
 				@foreach($matkul as $matkuls)
-				<option value="">{{$matkuls->Mata_kuliah}}</option>
+				<option value="{{$matkuls->id}}">{{$matkuls->Mata_kuliah}}</option>
 				@endforeach
 				</select>
                 
               </div>
 			   <div class="form-group">
                 <label >Tahun ajaran</label>
-				<select name="tipe" class="form-control"  >
-                  <option value="">A</option>
-                  <option value="">A-</option>
-                  <option value="">A/B</option>
-                  <option value="">B+</option>
-				  <option value="">B</option>
-				  <option value="">B/C</option>
-				  <option value="">C+</option>
-				  <option value="">C</option>
-				  <option value="">C-</option>
-				  <option value="">D</option>
-				  <option value="">E</option>
-				  <option value="">F</option>
+				<select name="nilai" class="form-control"  >
+                  <option value="A">A</option>
+                  <option value="A-">A-</option>
+                  <option value="A/B">A/B</option>
+                  <option value="B+">B+</option>
+				  <option value="B">B</option>
+				  <option value="B/C">B/C</option>
+				  <option value="C+">C+</option>
+				  <option value="C">C</option>
+				  <option value="C-">C-</option>
+				  <option value="D">D</option>
+				  <option value="E">E</option>
+				  <option value="F">F</option>
                   
               </select>
               </div>

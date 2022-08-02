@@ -129,6 +129,16 @@ class adminController extends Controller
     $matkul = \App\Matkul::all();
     return view('op.nilai_mhs', compact('mhs', 'matkul'));
   }
+
+  public function addnilai_mhs(Request $request,$mhsid){
+    // dd($request->all());
+    $mhs = \App\mahasiswa::findorFail($mhsid);
+    $mhs->matkul()->attach($request->matkul_id,['nilai' => $request->nilai]);
+
+    return redirect('nilai/'.$mhsid);
+
+    // return $mhs;
+  }
   public function showNilai($id)
   {
     $mhs1 = \App\mahasiswa::find($id);
