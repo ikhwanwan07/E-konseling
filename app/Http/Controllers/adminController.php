@@ -77,7 +77,7 @@ class adminController extends Controller
     return redirect()->back()->with('info','data sudah ada');
     }else {
       $ipk->update($request->all());
-      return redirect('/ipk'.$request->mahasiswa_id);
+      return redirect('ipk/'.$request->mahasiswa_id);
     }
    
    
@@ -112,10 +112,11 @@ class adminController extends Controller
 
   public function deleteipk($id)
   {
-
+    
     $ipk = IPK::find($id);
     $ipk->delete();
-    return redirect('/ipk')->with('success', 'data berhasil didelete');
+    $mhsid = $ipk->mahasiswa_id;
+    return redirect('ipk/'.$mhsid)->with('success', 'data berhasil didelete');
   }
 
   public function jadwal()
@@ -146,19 +147,35 @@ class adminController extends Controller
     // return $mhs;
   }
 
-  public function deleteNilai()
-  {
+  public function deleteNilai($id)
+  { 
     return "ini delete nilai";
   }
-  public function editNilai()
+  public function editNilai($id)
   {
-      $nilai_mhs = Nilai::all();
-    return $nilai_mhs;
+    $dataNilai = Nilai::find($id);
+    $mhs = \App\mahasiswa::all();
+    $matkul = \App\Matkul::all();
+    return view('op.edit_nilai_mhs',compact('dataNilai','mhs','matkul'));
   }
-  public function updateNilai()
+  public function updateNilai(Request $request,$id)
   {
-    return "ini update nilai";
-  }
+     $mhs = \App\mahasiswa::findorFail($id);
+     $mhs->matkul()->updateExistingPivot($request->matkul_id,['nilai' => $request->nilai]);
+    // return $request->all();
+    
+    // if(Nilai::where('mahasiswa_id','=',$request->mahasiswa_id)
+    //     ->where('matkul_id','=',$request->matkul_id)
+    //     ->exists()) {
+    //       // return "data sudah ada gan";
+    //        return redirect('/nilai_mhs')->with('info','data sudah ada');
+    //     }else{
+    // $mhs->matkul()->updateExistingPivot($request->matkul_id,['nilai' => $request->nilai]);
+    return redirect('nilai/'.$id);
+    // return "ini update nilai";
+  // }
+}
+
   public function showNilai($id)
   {
     $mhs1 = \App\mahasiswa::find($id);

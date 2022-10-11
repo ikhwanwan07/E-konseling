@@ -17,7 +17,7 @@
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Tabel Nilai Mahasiswa</h3>
-									<i class="fa fa-user-plus right" data-toggle="modal" data-target="#exampleModal"></i>
+									{{-- <i class="fa fa-user-plus right" data-toggle="modal" data-target="#exampleModal"></i> --}}
 									
 								</div>
 								<div class="panel-body">

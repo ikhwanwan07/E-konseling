@@ -7,7 +7,7 @@
         <li><a href="/mahasiswa" class=""><i class="lnr lnr-user"></i> <span>Mahasiswa</span></a></li>
         <li><a href="/ipk" class=""><i class="lnr lnr-star"></i> <span>IPK</span></a></li>
         <li><a href="/jadwal" class=""><i class="lnr lnr-calendar-full"></i> <span>Jadwal</span></a></li>
-        <li><a href="/nilai_mhs" class=""><i class="lnr lnr-chart-bars"></i> <span>Nilai</span></a></li>
+        {{-- <li><a href="/nilai_mhs" class=""><i class="lnr lnr-chart-bars"></i> <span>Nilai</span></a></li> --}}
         <li><a href="/dosen" class=""><i class="lnr lnr-users"></i> <span>Dosen</span></a></li>
         <li><a href="/tabelpost" class=""><i class="lnr lnr-file-empty"></i> <span>Post Artikel</span></a></li>
         <li><a href="/sistem" class=""><i class="lnr lnr-users"></i> <span>Sistem Cerdas</span></a></li>
