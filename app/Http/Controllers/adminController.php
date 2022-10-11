@@ -20,7 +20,7 @@ use Alert;
 use App\Konsentrasi;
 use DB;
 use App\Jadwal;
-
+use App\Nilai;
 
 class adminController extends Controller
 {
@@ -133,10 +133,16 @@ class adminController extends Controller
   public function addnilai_mhs(Request $request,$mhsid){
     // dd($request->all());
     $mhs = \App\mahasiswa::findorFail($mhsid);
+
+    if(Nilai::where('mahasiswa_id','=',$request->mahasiswa_id)
+        ->where('matkul_id','=',$request->matkul_id)
+        ->exists()) {
+          // return "data sudah ada gan";
+           return redirect('/nilai_mhs')->with('info','data sudah ada');
+        }else{
     $mhs->matkul()->attach($request->matkul_id,['nilai' => $request->nilai]);
-
     return redirect('nilai/'.$mhsid);
-
+  }
     // return $mhs;
   }
 
@@ -146,7 +152,8 @@ class adminController extends Controller
   }
   public function editNilai()
   {
-    return "ini editnilai";
+      $nilai_mhs = Nilai::all();
+    return $nilai_mhs;
   }
   public function updateNilai()
   {
